@@ -1,7 +1,7 @@
 python-brute-force-post
 =======================
 
-Script en python para realizar ataques de fuerza bruta por HTTP a formularios de autenticación mediante el método POST.
+Script en python para realizar ataques de fuerza bruta por HTTP a formularios de autenticación mediante el método POST, el script esta probado para el portal web BRICKS de OWASP. el cual puede ser descargado desde http://sourceforge.net/projects/owaspbricks/
 
 IMPORTANTE
 ==========
